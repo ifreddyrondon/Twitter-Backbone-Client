@@ -5,7 +5,7 @@
 ## What i need to run the app?
   1. You must have installed node.js 
   2. Getting Set Up on Twitter
-    Utilize the Twitter API, go to https://dev.twitter.com/apps and set up authorization for our client.
+    Utilize the Twitter API, go to https://dev.twitter.com/apps and set up authorization for the client.
   3. Edit connectToTwitter.js file and set your data for
         consumer_key:         '...'
       , consumer_secret:      '...'
@@ -14,4 +14,4 @@
 
 ## How run the app?
   1. Open a terminal and node path_to_js_file.js
-  1. Open index.html in a browser
+  1. Open http://localhost:3000 in a browser
