@@ -1,11 +1,26 @@
-/**
- * A simple API hosted under localhost:8080/books
- */
 var express = require('express'),
-    app = express(),
+    path  = require('path'),
+    http = require('http'),
     connectToTwitter = require('./connectToTwitter');
 
-var client = connectToTwitter.connect();
+/*--------------------------------------------------------------------------------------------------------------*/
+var app = express(),
+    client = connectToTwitter.connect();
+
+  app.configure(function(){
+    app.set('port', process.env.PORT || 3000);
+    app.use(express.bodyParser());
+    app.use(express.methodOverride());
+    app.use(express.cookieParser('your secret here'));
+    app.use(express.static(path.join(__dirname, 'public')));
+  });
+
+/*--------------------------------------------------------------------------------------------------------------*/
+// Main page
+app.get('/', function (req,res){
+  res.sendfile(__dirname + '/index.html');
+});
+
 
 /** 
  * Get the account settings for the user with the id provided.
@@ -80,26 +95,7 @@ app.get('/timeline', function (request, response) {
 
 });
 
-
-//additional setup to allow CORS requests 
-var allowCrossDomain = function(req, response, next) {
-    response.header('Access-Control-Allow-Origin', "http://localhost");
-    response.header('Access-Control-Allow-Methods', 'OPTIONS, GET,PUT,POST,DELETE');
-    response.header('Access-Control-Allow-Headers', 'Content-Type');
-
-    if ('OPTIONS' == req.method) {
-      response.send(200);
-    }
-    else {
-      next();
-    }
-};
-
-app.configure(function() {
-    app.use(allowCrossDomain);
-  //Parses the JSON object given in the body request
-    app.use(express.bodyParser());
+/*--------------------------------------------------------------------------------------------------------------*/
+http.createServer(app).listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
 });
-
-//start up the app on port 3000
-app.listen(3000); 

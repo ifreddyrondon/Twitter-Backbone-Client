@@ -4,7 +4,7 @@ com.apress.model = com.apress.model || {};
 
 com.apress.model.Search = Backbone.Model.extend({
 
-	url: 'http://localhost:3000/search',
+	url: '/search',
 
 	sync: function(method, model, options){
 		if (this.get('query')) {
