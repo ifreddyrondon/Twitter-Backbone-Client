@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Beginnig Backbone Twitter Example</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<!-- any other CSS here-->
+	</head>
+	<body>
+
+		<header class="masthead">
+		    <div class="container">
+	        	<h1>
+	        		<a href="#">Twitter Backbone</a>
+	          		<p class="lead">{Client example}</p>
+	          	</h1>
+	      	</div>
+		</header>
+
+		<div class="container">
+		  	<div id="app" class="row">
+				<section>
+					<div class="col-lg-8 panel">
+						<div id="timeline" class="timeline-view">
+							<h3>TimeLine</h3>
+						</div>			
+					</div>	
+				</section>
+
+				<section>
+					<div class="col-lg-4">
+						<div id="profile" class="profile-view">
+							<!-- Profile view here -->
+						</div>
+
+						<div id="search" class="search-view panel"> 
+							<form>
+								<fieldset class="form-group">
+									<input type="text" id="searchbox" autofocus="" placeholder="I'm loocking for.." class="form-control">
+								</fieldset>
+
+								<fieldset class="form-group">
+									<button class="btn btn-primary pull-right" id="searchbutton">Search</button>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</section>
+				
+			</div>
+		</div>
+		
+		<!-- Hadlebars templates -->
+		<!-- Template for timeline -->
+		<script type="text/x-handlebars-template" id="timeline-template">
+			<ul class='list-group'>
+				{{#each tweet}}
+				<li class="list-group-item">
+					<div class="row">
+						<div class="col-lg-2">
+							<div class="thumbnail">
+								<img src='{{user.profile_image_url}}'></img>
+							</div>	
+						</div>	
+						<div class="col-lg-10">
+							<h4>{{user.name}}</h4>
+							<p>{{format text}}</p>
+							<hr>
+							<em class="pull-right"><i>{{friendlyDate}}</i></em>
+						</div>	
+					</div>
+				</li>
+				{{/each}}
+			</ul>
+		</script>
+
+		<!-- Template for profile -->
+		<script type="text/x-handlebars-template" id="profile-template">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2">
+						<div class="thumbnail">
+							<img src='{{user.profile_image_url}}'></img>
+						</div>	
+					</div>	
+
+					<div class="col-lg-10">
+						<h4>{{user.name}}</h4>
+						<p>{{user.description}}</p>
+						<a href="#">
+							Followers
+					      	<span class="badge">{{user.followers_count}}</span>
+					    </a>
+					</div>	
+				</div>
+			</div>
+		</script>
+
+		<!-- External library Includes -->
+		<script type="text/javascript" src="js/vendor/jquery-1.11.1.min.js"></script>
+		<script type="text/javascript" src="js/vendor/underscore-min.js"></script>
+		<script type="text/javascript" src="js/vendor/backbone-min.js"></script>
+		<script type="text/javascript" src="js/vendor/moment.min.js"></script>
+		<script type="text/javascript" src="js/vendor/handlebars.min.js"></script>
+		<script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/vendor/bootstrap-dialog.min.js"></script>
+		
+
+		<!-- Utils -->
+		<script type="text/javascript" src="js/app/util/helpers.js"></script>
+
+		<!-- Model -->
+		<script type="text/javascript" src="js/app/model/Tweet.js"></script>
+		<script type="text/javascript" src="js/app/model/Profile.js"></script>
+		<script type="text/javascript" src="js/app/model/Search.js"></script>
+
+		<!-- Collections -->
+		<script type="text/javascript" src="js/app/collection/Timeline.js"></script>
+
+		<!-- View -->
+		<script type="text/javascript" src="js/app/view/TimelineView.js"></script>
+		<script type="text/javascript" src="js/app/view/ProfileView.js"></script>
+		<script type="text/javascript" src="js/app/view/ProfilePopupView.js"></script>
+		<script type="text/javascript" src="js/app/view/SearchView.js"></script>
+		<script type="text/javascript" src="js/app/view/ResultsView.js"></script>
+
+		<!-- Router -->
+		<script type="text/javascript" src="js/app/router/AppRouter.js"></script>
+
+		<!-- 'main' for this app -->
+		<script type="text/javascript" src="js/app/app.js"></script>
+	</body>
+</html>
