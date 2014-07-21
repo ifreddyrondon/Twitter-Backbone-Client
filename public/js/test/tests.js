@@ -36,4 +36,19 @@ module('Asynchronous Tests');
    			ok(actual, 'Simple test to prove async');
    			start();
  		}, 1000);
-});
+	});
+
+QUnit.begin = function() {
+ 	fixtureEl = $('#qunit-fixture');
+ 	fixtureEl.append('<p id=\'myparagraph\'>New Paragraph</p>');
+};
+	//tests for DOM manipulation
+module('Fixture Test');
+	
+	test('Check for paragraph', function(){
+ 		var results = fixtureEl.find('#myparagraph').length;
+ 		console.log(fixtureEl);
+ 		console.log(results);
+ 		ok(results === 1, 'Found the correct paragraph');
+	});
+
