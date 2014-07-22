@@ -5,13 +5,12 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Beginnig Backbone Twitter Example</title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<!-- any other CSS here-->
 	</head>
 	<body>
 
-		<header class="masthead">
+		<header>
 		    <div class="container">
 	        	<h1>
 	        		<a href="#">Twitter Backbone</a>
@@ -25,7 +24,7 @@
 				<section>
 					<div class="col-lg-8 panel">
 						<div id="timeline" class="timeline-view">
-							<h3>TimeLine</h3>
+							<h2>Tweets</h2>
 						</div>			
 					</div>	
 				</section>
@@ -35,16 +34,15 @@
 						<div id="profile" class="profile-view">
 							<!-- Profile view here -->
 						</div>
-
+						<br>
+						<br>
+						<br>
 						<div id="search" class="search-view panel"> 
 							<form>
-								<fieldset class="form-group">
-									<input type="text" id="searchbox" autofocus="" placeholder="I'm loocking for.." class="form-control">
-								</fieldset>
-
-								<fieldset class="form-group">
-									<button class="btn btn-primary pull-right" id="searchbutton">Search</button>
-								</fieldset>
+								<input type="text" id="searchbox" autofocus="" placeholder="I'm loocking for.." class="form-control">
+								<br>
+								<button class="btn btn-primary pull-right" id="searchbutton">Search</button>
+								
 							</form>
 						</div>
 					</div>
@@ -56,45 +54,46 @@
 		<!-- Hadlebars templates -->
 		<!-- Template for timeline -->
 		<script type="text/x-handlebars-template" id="timeline-template">
-			<ul class='list-group'>
+			<div class="mtt_tweets_wrapper"> 
 				{{#each tweet}}
-				<li class="list-group-item">
-					<div class="row">
-						<div class="col-lg-2">
-							<div class="thumbnail">
-								<img src='{{user.profile_image_url}}'></img>
-							</div>	
-						</div>	
-						<div class="col-lg-10">
-							<h4>{{user.name}}</h4>
-							<p>{{format text}}</p>
-							<hr>
-							<em class="pull-right"><i>{{friendlyDate}}</i></em>
-						</div>	
+					<div class="mtt-tweet-wrapper">
+						<div class="mtt-tweet">
+							<a href="#" class="mtt-tweet-header">
+								<img src="{{user.profile_image_url}}">
+							</a>
+							<a class="mtt-tweet-header-fullname" href="#">{{user.name}} </a> 
+							<a class="mtt-tweet-header-username" href="#">@{{user.screen_name}}</a>
+							<div class="mtt-tweet-timestamp">{{friendlyDate}}</div>
+							<p class="mtt-tweet-content" > {{format text}} </p>
+						</div>
 					</div>
-				</li>
 				{{/each}}
-			</ul>
+			</div>
 		</script>
 
 		<!-- Template for profile -->
 		<script type="text/x-handlebars-template" id="profile-template">
-			<div class="container">
+		<div class="container">
 				<div class="row">
-					<div class="col-lg-2">
-						<div class="thumbnail">
-							<img src='{{user.profile_image_url}}'></img>
-						</div>	
-					</div>	
-
-					<div class="col-lg-10">
-						<h4>{{user.name}}</h4>
-						<p>{{user.description}}</p>
-						<a href="#">
-							Followers
-					      	<span class="badge">{{user.followers_count}}</span>
-					    </a>
-					</div>	
+					<a href="#" class="profile-img">
+						<img src="{{user.profile_image_url}}">
+					</a>
+					<a class="profile-fullname" href="#">{{user.name}}</a>
+					<br>
+					<a class="mtt-tweet-header-username" href="#">@{{user.screen_name}}</a>
+					<p class="mtt-tweet-content" > {{user.description}} </p>
+				    <a href="#" class="profile-status-wrapper">
+				    	<div class="mtt-tweet-timestamp">Tweets</div>
+				    	<div class="profile-numbers-big">{{user.statuses_count}}</div>
+				    </a>
+				    <a href="#" class="profile-status-wrapper">
+				    	<div class="mtt-tweet-timestamp">Following</div>
+				    	<div class="profile-numbers-big">{{user.friends_count}}</div>
+				    </a>
+				    <a href="#" class="profile-status-wrapper">
+				    	<div class="mtt-tweet-timestamp">Followers</div>
+				    	<div class="profile-numbers-big">{{user.followers_count}}</div>
+				    </a>
 				</div>
 			</div>
 		</script>
