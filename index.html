@@ -12,17 +12,14 @@
 
 		<header>
 		    <div class="container">
-	        	<h1>
-	        		<a href="#">Twitter Backbone</a>
-	          		<p class="lead">{Client example}</p>
-	          	</h1>
+	        	<h1><a href="#">Twitter Backbone</a></h1>
 	      	</div>
 		</header>
 
 		<div class="container">
 		  	<div id="app" class="row">
 				<section>
-					<div class="col-lg-8 panel">
+					<div class="col-md-8">
 						<div id="timeline" class="timeline-view">
 							<h2>Tweets</h2>
 						</div>			
@@ -30,20 +27,18 @@
 				</section>
 
 				<section>
-					<div class="col-lg-4">
-						<div id="profile" class="profile-view">
+					<div class="col-md-4">
+						<div class="fixed">
+							<div id="profile" class="profile-view">
 							<!-- Profile view here -->
-						</div>
-						<br>
-						<br>
-						<br>
-						<div id="search" class="search-view panel"> 
-							<form>
-								<input type="text" id="searchbox" autofocus="" placeholder="I'm loocking for.." class="form-control">
-								<br>
-								<button class="btn btn-primary pull-right" id="searchbutton">Search</button>
-								
-							</form>
+							</div>
+							<div id="search" class="search-view"> 
+								<form>
+									<input type="text" id="searchbox" autofocus="" placeholder="I'm loocking for.." class="form-control">
+									<br>
+									<button class="btn btn-primary pull-right" id="searchbutton">Search</button>
+								</form>
+							</div>
 						</div>
 					</div>
 				</section>
@@ -73,29 +68,26 @@
 
 		<!-- Template for profile -->
 		<script type="text/x-handlebars-template" id="profile-template">
-		<div class="container">
-				<div class="row">
-					<a href="#" class="profile-img">
-						<img src="{{user.profile_image_url}}">
-					</a>
-					<a class="profile-fullname" href="#">{{user.name}}</a>
-					<br>
-					<a class="mtt-tweet-header-username" href="#">@{{user.screen_name}}</a>
-					<p class="mtt-tweet-content" > {{user.description}} </p>
-				    <a href="#" class="profile-status-wrapper">
-				    	<div class="mtt-tweet-timestamp">Tweets</div>
-				    	<div class="profile-numbers-big">{{user.statuses_count}}</div>
-				    </a>
-				    <a href="#" class="profile-status-wrapper">
-				    	<div class="mtt-tweet-timestamp">Following</div>
-				    	<div class="profile-numbers-big">{{user.friends_count}}</div>
-				    </a>
-				    <a href="#" class="profile-status-wrapper">
-				    	<div class="mtt-tweet-timestamp">Followers</div>
-				    	<div class="profile-numbers-big">{{user.followers_count}}</div>
-				    </a>
-				</div>
-			</div>
+			<a href="#" class="profile-img">
+				<img src="{{user.profile_image_url}}">
+			</a>
+			<a class="profile-fullname" href="#">{{user.name}}</a>
+			<br>
+			<a class="mtt-tweet-header-username" href="#">@{{user.screen_name}}</a>
+			<p class="mtt-tweet-content" > {{user.description}} </p>
+			<br>
+		    <a href="#" class="profile-status-wrapper">
+		    	<div class="mtt-tweet-timestamp">Tweets</div>
+		    	<div class="profile-numbers-big">{{user.statuses_count}}</div>
+		    </a>
+		    <a href="#" class="profile-status-wrapper">
+		    	<div class="mtt-tweet-timestamp">Following</div>
+		    	<div class="profile-numbers-big">{{user.friends_count}}</div>
+		    </a>
+		    <a href="#" class="profile-status-wrapper">
+		    	<div class="mtt-tweet-timestamp">Followers</div>
+		    	<div class="profile-numbers-big">{{user.followers_count}}</div>
+		    </a>
 		</script>
 
 		<!-- External library Includes -->
