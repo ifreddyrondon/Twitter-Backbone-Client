@@ -3,15 +3,21 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    clean: ['dest/','public/css/','public/js/'],
+    clean: {
+      css: ['dest/css','public/css/'],
+      js: ['dest/js','public/js/'],
+    },
 
     copy: {
-      main: {
+      js: {
         files: [
-          // css
-          {expand: true, flatten: true, src: ['assets/css/**'], dest: 'dest/css/all/', filter: 'isFile'},
-          // js app
           {src: ['assets/js/app/app.js'], dest: 'dest/js/all/7.js', filter: 'isFile'},
+        ]
+      },
+
+      css: {
+        files: [
+          {expand: true, flatten: true, src: ['assets/css/**'], dest: 'dest/css/all/', filter: 'isFile'},
         ]
       }
     },
@@ -73,7 +79,21 @@ module.exports = function(grunt) {
           'public/css/output.min.css': ['dest/css/concat/concat.css']
         }
       }
-    }
+    },
+
+
+    watch: {
+      js: {
+        files: ['assets/js/app/**/*.js','assets/js/vendor/*.js'],
+        tasks: ['clean:js','copy:js','concat:vendor','concat:app_utils','concat:app_models','concat:app_collections','concat:app_views','concat:app_router','concat:all','uglify']
+      },
+      css: {
+         files: 'assets/css/*.css',
+         tasks: ['clean:css','copy:css','concat:css','cssmin']
+      },
+    },
+
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -81,6 +101,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', ['clean','copy','concat','uglify','cssmin']);
 
